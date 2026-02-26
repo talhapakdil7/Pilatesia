@@ -20,49 +20,49 @@
 
 
 
-## 9. Üyelik Durumu Görüntüleme
+## 4. Üyelik Durumu Görüntüleme
 
 - **API Metodu:** `GET /me/membership`
 - **Açıklama:** Kullanıcının üyelik durumunu getirir. Üyeliğin aktif veya pasif olduğu, başlangıç ve bitiş tarihleri görüntülenir.
 
 
 
-## 10. Kalan Ders Hakkını Görüntüleme
+## 5. Kalan Ders Hakkını Görüntüleme
 
 - **API Metodu:** `GET /me/credits`
 - **Açıklama:** Kullanıcının kalan ders hakkını getirir. Kullanıcının kaç adet ders rezervasyonu yapabileceği görüntülenir.
 
 
 
-## 11. Profil Güncelleme
+## 6. Profil Güncelleme
 
 - **API Metodu:** `PUT /me`
 - **Açıklama:** Kullanıcının profil bilgilerini güncellemesini sağlar. Kullanıcı adı ve diğer kişisel bilgiler değiştirilebilir.
 
 
 
-## 16. Kullanıcı Listeleme (Admin)
+## 7. Kullanıcı Listeleme (Admin)
 
 - **API Metodu:** `GET /admin/users`
 - **Açıklama:** Admin rolüne sahip kullanıcının sistemdeki tüm kullanıcıları listelemesini sağlar.
 
 
 
-## 17. Kullanıcı Ekleme (Admin)
+## 8. Kullanıcı Ekleme (Admin)
 
 - **API Metodu:** `POST /admin/users`
 - **Açıklama:** Admin rolüne sahip kullanıcının sisteme yeni kullanıcı eklemesini sağlar.
 
 
 
-## 18. Kullanıcı Güncelleme (Admin)
+## 9. Kullanıcı Güncelleme (Admin)
 
 - **API Metodu:** `PUT /admin/users/{userId}`
 - **Açıklama:** Admin rolüne sahip kullanıcının mevcut kullanıcı bilgilerini güncellemesini sağlar.
 
 
 
-## 19. Kullanıcı Silme (Admin)
+## 10. Kullanıcı Silme (Admin)
 
 - **API Metodu:** `DELETE /admin/users/{userId}`
 - **Açıklama:** Admin rolüne sahip kullanıcının sistemi kullanan kullanıcıyı silmesini sağlar.
