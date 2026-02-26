@@ -6,10 +6,11 @@
 
 ![Ürün Tanıtım Görseli](Product.png)
 
-**Proje Tanımı:** 
+### Proje Tanımı: 
+
 Pilatesia, pilates eğitmenleri ve öğrenciler için geliştirilmiş modern bir ders planlama ve rezervasyon uygulamasıdır. Kullanıcılar mevcut pilates derslerini görüntüleyebilir, derslere kayıt olabilir ve kendi ders programlarını kolayca yönetebilirler. Eğitmenler ise yeni dersler oluşturabilir, katılımcıları takip edebilir ve ders planlarını organize edebilir.
 
-**Proje Kategorisi:** 
+### Proje Kategorisi:
 Sağlık ve Fitness / Rezervasyon ve Planlama Sistemi
 
 ---
