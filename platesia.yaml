@@ -1,7 +1,47 @@
 openapi: 3.1.0
+title: Pilatesia API
 info:
   title: Pilatesia API
-  version: 0.1.0
+  description: |
+    Pilates stüdyosu rezervasyon ve yönetim platformu için RESTful API.
+
+    ## Özellikler
+    - Kullanıcı ve üye yönetimi
+    - Pilates dersleri ve eğitmen yönetimi
+    - Ders rezervasyon sistemi
+    - BMI hesaplama ve kullanıcı sağlık verileri
+    - JWT tabanlı kimlik doğrulama
+  version: 1.0.0
+  contact:
+    name: API Destek Ekibi
+    email: talhapakdil7@gmail.com
+    url: https://talha-portfolioo.vercel.app/
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+tags:
+  - name: auth
+    description: Kimlik doğrulama işlemleri
+
+  - name: lessons
+    description: Pilates dersleri ve program yönetimi
+
+  - name: reservations
+    description: Ders rezervasyon işlemleri
+
+  - name: membership
+    description: Üyelik ve kredi bilgileri işlemleri
+
+  - name: admin-lessons
+    description: Admin tarafında ders yönetimi işlemleri
+
+  - name: admin-users
+    description: Kullanıcı ve admin yönetimi işlemleri
+
+  - name: warmups
+    description: Isınma hareketleri yönetimi işlemleri
+    
 paths:
   "/register":
     post:
