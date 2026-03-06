@@ -5,6 +5,7 @@
 Bu doküman, OpenAPI Specification (OAS) 3.1 standardına göre hazırlanmış örnek bir API tasarımını içermektedir.
 
 ---
+```yaml
 openapi: 3.1.0
 info:
   title: Pilatesia API
@@ -833,3 +834,4 @@ components:
           scopes: {}
           tokenUrl: login
 
+```
