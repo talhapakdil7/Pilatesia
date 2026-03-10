@@ -1,46 +1,46 @@
-# Busra Mangaoglu Gereksinimleri
+# Busra Mangaoglu Requirements
 
-## 1. Dersleri Listeleme
+## 1. List Lessons
 
-- **API Metodu:** `GET /classes`
-- **Açıklama:** Sistemde tanımlı olan derslerin listesini getirir. Kullanıcılar tarih ve uygunluk durumuna göre dersleri görüntüleyebilir.
+- **API Method:** `GET /lessons`
+- **Description:** Retrieves the list of lessons defined in the system. Users can view available lessons based on schedule and availability.
 
-## 2. Ders Detayı Görüntüleme
+## 2. View Lesson Details
 
-- **API Metodu:** `GET /classes/{classId}`
-- **Açıklama:** Seçilen derse ait detaylı bilgileri getirir. Ders saati, kapasite ve doluluk bilgisi görüntülenir.
+- **API Method:** `GET /lessons/{lesson_id}`
+- **Description:** Retrieves detailed information about the selected lesson. Lesson time, capacity, and availability information are displayed.
 
-## 3. Ders Rezervasyonu Oluşturma
+## 3. Create Lesson Reservation
 
-- **API Metodu:** `POST /reservations`
-- **Açıklama:** Kullanıcının seçtiği ders için rezervasyon oluşturmasını sağlar. Kullanıcının üyeliği aktif olmalıdır ve ders kapasitesi dolu olmamalıdır.
+- **API Method:** `POST /reservations`
+- **Description:** Allows a user to create a reservation for a selected lesson. The user must have an active membership and the lesson must have available capacity.
 
-## 4. Rezervasyonları Listeleme
+## 4. List User Reservations
 
-- **API Metodu:** `GET /reservations`
-- **Açıklama:** Kullanıcının oluşturduğu rezervasyonları listeler. Kullanıcı yaklaşan ve geçmiş rezervasyonlarını görüntüleyebilir.
+- **API Method:** `GET /my-reservations`
+- **Description:** Lists the active reservations created by the user.
 
-## 5. Rezervasyon İptal Etme
+## 5. Cancel Reservation
 
-- **API Metodu:** `DELETE /reservations/{reservationId}`
-- **Açıklama:** Kullanıcının oluşturduğu rezervasyonu iptal etmesini sağlar. Geçmiş ders rezervasyonları iptal edilemez.
+- **API Method:** `DELETE /reservations/{reservation_id}`
+- **Description:** Allows the user to cancel a reservation they previously created. Past lesson reservations cannot be cancelled.
 
-## 6. Ders Listeleme (Admin)
+## 6. List Lessons (Admin)
 
-- **API Metodu:** `GET /admin/classes`
-- **Açıklama:** Admin rolüne sahip kullanıcının sistemdeki tüm dersleri listelemesini sağlar.
+- **API Method:** `GET /admin/lessons`
+- **Description:** Allows an admin user to list all lessons available in the system.
 
-## 7. Ders Ekleme (Admin)
+## 7. Create Lesson (Admin)
 
-- **API Metodu:** `POST /admin/classes`
-- **Açıklama:** Admin rolüne sahip kullanıcının sisteme yeni ders eklemesini sağlar.
+- **API Method:** `POST /admin/lessons`
+- **Description:** Allows an admin user to create and add a new lesson to the system.
 
-## 8. Ders Güncelleme (Admin)
+## 8. Update Lesson (Admin)
 
-- **API Metodu:** `PUT /admin/classes/{classId}`
-- **Açıklama:** Admin rolüne sahip kullanıcının mevcut ders bilgilerini güncellemesini sağlar.
+- **API Method:** `PUT /admin/lessons/{lesson_id}`
+- **Description:** Allows an admin user to update the details of an existing lesson.
 
-## 9. Ders Silme (Admin)
+## 9. Delete Lesson (Admin)
 
-- **API Metodu:** `DELETE /admin/classes/{classId}`
-- **Açıklama:** Admin rolüne sahip kullanıcının dersi sistemden silmesini sağlar.
+- **API Method:** `DELETE /admin/lessons/{lesson_id}`
+- **Description:** Allows an admin user to delete a lesson from the system.

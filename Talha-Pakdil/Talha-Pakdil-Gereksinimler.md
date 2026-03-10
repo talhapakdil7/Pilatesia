@@ -1,68 +1,51 @@
-# Talha Pakdil Gereksinimleri
+# Talha Pakdil Requirements
 
-## 1. Üye Olma
+## 1. User Registration
 
-- **API Metodu:** `POST /auth/register`
-- **Açıklama:** Kullanıcıların email ve şifre belirleyerek sisteme kayıt olmasını sağlar. Yeni kullanıcı hesabı oluşturulur ve varsayılan rol "member" olarak atanır.
+- **API Method:** `POST /register`
+- **Description:** Allows users to create an account in the system by providing their email and password. A new user account is created and the default role is assigned as "user".
 
+## 2. User Login
 
-## 2. Giriş Yapma
+- **API Method:** `POST /login`
+- **Description:** Allows users to log into their accounts in the system. Email and password are validated. After a successful login, an access token is generated for authentication.
 
-- **API Metodu:** `POST /auth/login`
-- **Açıklama:** Kullanıcıların sistemdeki hesaplarına giriş yapmasını sağlar. Email ve şifre doğrulanır. Başarılı giriş sonrası kullanıcıya yetkilendirme için erişim belirteci (token) oluşturulur.
+## 3. View Profile
 
+- **API Method:** `GET /me`
+- **Description:** Retrieves the profile information of the authenticated user. The user can view their name, email, and other profile information.
 
+## 4. View Membership Status
 
-## 3. Profil Görüntüleme
+- **API Method:** `GET /membership`
+- **Description:** Retrieves the membership information of the authenticated user. The user can view membership status and related details.
 
-- **API Metodu:** `GET /me`
-- **Açıklama:** Giriş yapmış kullanıcının profil bilgilerini getirir. Kullanıcı ad, email ve üyelik bilgileri görüntülenebilir.
+## 5. View Remaining Credits
 
+- **API Method:** `GET /membership`
+- **Description:** Retrieves the remaining lesson credits of the authenticated user, showing how many lessons the user can still reserve.
 
+## 6. Update Profile
 
-## 4. Üyelik Durumu Görüntüleme
+- **API Method:** `PUT /profile`
+- **Description:** Allows the user to update their profile information such as full name or password.
 
-- **API Metodu:** `GET /me/membership`
-- **Açıklama:** Kullanıcının üyelik durumunu getirir. Üyeliğin aktif veya pasif olduğu, başlangıç ve bitiş tarihleri görüntülenir.
+## 7. List Users (Admin)
 
+- **API Method:** `GET /admin/users`
+- **Description:** Allows an admin user to retrieve a list of all users in the system.
 
+## 8. Create User (Admin)
 
-## 5. Kalan Ders Hakkını Görüntüleme
+- **API Method:** `POST /admin/users`
+- **Description:** Allows an admin user to create a new user in the system.
 
-- **API Metodu:** `GET /me/credits`
-- **Açıklama:** Kullanıcının kalan ders hakkını getirir. Kullanıcının kaç adet ders rezervasyonu yapabileceği görüntülenir.
+## 9. Update User (Admin)
 
+- **API Method:** `PATCH /admin/users/{user_id}`
+- **Description:** Allows an admin user to update the information of an existing user.
 
+## 10. Delete User (Admin)
 
-## 6. Profil Güncelleme
-
-- **API Metodu:** `PUT /me`
-- **Açıklama:** Kullanıcının profil bilgilerini güncellemesini sağlar. Kullanıcı adı ve diğer kişisel bilgiler değiştirilebilir.
-
-
-
-## 7. Kullanıcı Listeleme (Admin)
-
-- **API Metodu:** `GET /admin/users`
-- **Açıklama:** Admin rolüne sahip kullanıcının sistemdeki tüm kullanıcıları listelemesini sağlar.
-
-
-
-## 8. Kullanıcı Ekleme (Admin)
-
-- **API Metodu:** `POST /admin/users`
-- **Açıklama:** Admin rolüne sahip kullanıcının sisteme yeni kullanıcı eklemesini sağlar.
-
-
-
-## 9. Kullanıcı Güncelleme (Admin)
-
-- **API Metodu:** `PUT /admin/users/{userId}`
-- **Açıklama:** Admin rolüne sahip kullanıcının mevcut kullanıcı bilgilerini güncellemesini sağlar.
-
-
-
-## 10. Kullanıcı Silme (Admin)
-
-- **API Metodu:** `DELETE /admin/users/{userId}`
-- **Açıklama:** Admin rolüne sahip kullanıcının sistemi kullanan kullanıcıyı silmesini sağlar.
+- **API Method:** `DELETE /admin/users/{user_id}`
+- **Description:** Allows an admin user to remove a user from the system.
