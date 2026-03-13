@@ -1,34 +1,41 @@
 # Requirement Analysis
 
-1. **User Registration** (/register) (Talha Pakdil)
-2. **User Login** (/login) (Talha Pakdil)
-3. **View Current User Profile** (/me) (Talha Pakdil)
+1. **Register Studio and Admin** (/register-studio) (Talha Pakdil)
+2. **User Registration** (/register) (Talha Pakdil)
+3. **User Login** (/login) (Talha Pakdil)
+4. **View Current User Profile** (/me) (Talha Pakdil)
+5. **Update Profile** (/profile) (Talha Pakdil)
+6. **Check Studio Code** (/studios/check) (Talha Pakdil)
 
-4. **List Lessons** (/lessons) (Büşra Mangaoglu)
-5. **View Lesson Details** (/lessons/{lesson_id}) (Büşra Mangaoglu)
+7. **List Lessons** (/lessons) (Büşra Mangaoglu)
+8. **View Lesson Details** (/lessons/{lesson_id}) (Büşra Mangaoglu)
 
-6. **Create Reservation** (/reservations) (Büşra Mangaoglu)
-7. **List Active Reservations** (/my-reservations) (Büşra Mangaoglu)
-8. **Cancel Reservation** (/reservations/{reservation_id}) (Büşra Mangaoglu)
+9. **Create Reservation** (/reservations) (Büşra Mangaoglu)
+10. **List Active Reservations** (/my-reservations) (Büşra Mangaoglu)
+11. **View Reservation History** (/my-reservations/history) (Büşra Mangaoglu)
+12. **Cancel Reservation** (/reservations/{reservation_id}) (Büşra Mangaoglu)
 
-9. **View Membership Information** (/membership) (Talha Pakdil)
-10. **View Remaining Credits** (/membership) (Talha Pakdil)
+13. **View Membership Information** (/membership) (Talha Pakdil)
 
-11. **Update Profile** (/profile) (Talha Pakdil)
+14. **Admin List Lessons** (/admin/lessons) (Büşra Mangaoglu)
+15. **Admin Create Lesson** (/admin/lessons) (Büşra Mangaoglu)
+16. **Admin Update Lesson** (/admin/lessons/{lesson_id}) (Büşra Mangaoglu)
+17. **Admin Delete Lesson** (/admin/lessons/{lesson_id}) (Büşra Mangaoglu)
 
-12. **Admin List Lessons** (/admin/lessons) (Büşra Mangaoglu)
-13. **Admin Create Lesson** (/admin/lessons) (Büşra Mangaoglu)
-14. **Admin Update Lesson** (/admin/lessons/{lesson_id}) (Büşra Mangaoglu)
-15. **Admin Delete Lesson** (/admin/lessons/{lesson_id}) (Büşra Mangaoglu)
+18. **Admin List Users** (/admin/users) (Talha Pakdil)
+19. **Admin Create User** (/admin/users) (Talha Pakdil)
+20. **Admin Update User** (/admin/users/{user_id}) (Talha Pakdil)
+21. **Admin Delete User** (/admin/users/{user_id}) (Talha Pakdil)
+22. **Admin Add User Credits** (/admin/users/{user_id}/credits) (Talha Pakdil)
 
-16. **Admin List Users** (/admin/users) (Talha Pakdil)
-17. **Admin Create User** (/admin/users) (Talha Pakdil)
-18. **Admin Update User** (/admin/users/{user_id}) (Talha Pakdil)
-19. **Admin Delete User** (/admin/users/{user_id}) (Talha Pakdil)
+23. **List Warmup Moves** (/warmup-moves) (Talha Pakdil)
+24. **Create Warmup Move** (/warmup-moves) (Talha Pakdil)
+25. **Update Warmup Move** (/warmup-moves/{move_id}) (Talha Pakdil)
+26. **Delete Warmup Move** (/warmup-moves/{move_id}) (Talha Pakdil)
 
-20. **List Warmup Moves** (/warmup-moves) (Talha Pakdil)
 
 # Requirement Distribution
 
-1. [Talha Pakdil Requirements](Talha-Pakdil/Talha-Pakdil-Gereksinimler.md)  
+1. [Talha Pakdil Requirements](Talha-Pakdil/Talha-Pakdil-Gereksinimler.md)
+
 2. [Busra Mangaoglu Requirements](Busra-Mangaoglu/Busra-Mangaoglu-Gereksinimler.md)
