@@ -1,8 +1,9 @@
+
+---
 openapi: 3.1.0
-title: Pilatesia API
 info:
   title: Pilatesia API
-  description: |
+ description: |
     Pilates stüdyosu rezervasyon ve yönetim platformu için RESTful API.
 
     ## Özellikler
@@ -11,8 +12,8 @@ info:
     - Ders rezervasyon sistemi
     - BMI hesaplama ve kullanıcı sağlık verileri
     - JWT tabanlı kimlik doğrulama
-  version: 1.0.0
-  contact:
+  version: 0.1.0
+ contact:
     name: API Destek Ekibi
     email: talhapakdil7@gmail.com
     url: https://talha-portfolioo.vercel.app/
@@ -21,28 +22,50 @@ info:
     url: https://opensource.org/licenses/MIT
 
 tags:
-  - name: auth
-    description: Kimlik doğrulama işlemleri
+- name: auth
+description: Kimlik doğrulama ve kullanıcı işlemleri
+- name: studios
+description: Stüdyo oluşturma ve stüdyo kontrol işlemleri
+- name: lessons
+description: Kullanıcıların görebildiği ders işlemleri
+- name: reservations
+description: Ders rezervasyon işlemleri
+- name: membership
+description: Kullanıcının üyelik ve kredi bilgileri
+- name: admin-lessons
+description: Stüdyo admininin ders yönetimi
+- name: admin-users
+description: Stüdyo admininin kullanıcı yönetimi
+- name: warmups
+description: Isınma hareketleri yönetimi
 
-  - name: lessons
-    description: Pilates dersleri ve program yönetimi
 
-  - name: reservations
-    description: Ders rezervasyon işlemleri
-
-  - name: membership
-    description: Üyelik ve kredi bilgileri işlemleri
-
-  - name: admin-lessons
-    description: Admin tarafında ders yönetimi işlemleri
-
-  - name: admin-users
-    description: Kullanıcı ve admin yönetimi işlemleri
-
-  - name: warmups
-    description: Isınma hareketleri yönetimi işlemleri
-    
 paths:
+  "/register-studio":
+    post:
+      tags:
+      - auth
+      summary: Register Studio
+      description: Yeni stüdyo oluşturur ve ilk admin kullanıcıyı ekler (herkese açık).
+      operationId: register_studio_register_studio_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/StudioRegister"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
   "/register":
     post:
       tags:
@@ -131,6 +154,32 @@ paths:
                 "$ref": "#/components/schemas/HTTPValidationError"
       security:
       - OAuth2PasswordBearer: []
+  "/studios/check":
+    get:
+      tags:
+      - auth
+      summary: Check Studio Code
+      description: Stüdyo kodu geçerli mi kontrol eder (kayıt formu için).
+      operationId: check_studio_code_studios_check_get
+      parameters:
+      - name: studio_code
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Studio Code
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
   "/lessons":
     get:
       tags:
@@ -143,12 +192,16 @@ paths:
           content:
             application/json:
               schema: {}
+      security:
+      - OAuth2PasswordBearer: []
   "/lessons/{lesson_id}":
     get:
       tags:
       - lessons
       summary: Get Lesson Detail
       operationId: get_lesson_detail_lessons__lesson_id__get
+      security:
+      - OAuth2PasswordBearer: []
       parameters:
       - name: lesson_id
         in: path
@@ -506,6 +559,8 @@ paths:
           content:
             application/json:
               schema: {}
+      security:
+      - OAuth2PasswordBearer: []
     post:
       tags:
       - warmups
@@ -777,8 +832,36 @@ components:
       required:
       - lesson_id
       title: ReservationCreate
+    StudioRegister:
+      properties:
+        studio_name:
+          type: string
+          title: Studio Name
+        studio_code:
+          type: string
+          title: Studio Code
+        admin_name:
+          type: string
+          title: Admin Name
+        admin_email:
+          type: string
+          title: Admin Email
+        admin_password:
+          type: string
+          title: Admin Password
+      type: object
+      required:
+      - studio_name
+      - studio_code
+      - admin_name
+      - admin_email
+      - admin_password
+      title: StudioRegister
     UserRegister:
       properties:
+        studio_code:
+          type: string
+          title: Studio Code
         full_name:
           type: string
           title: Full Name
@@ -790,6 +873,7 @@ components:
           title: Password
       type: object
       required:
+      - studio_code
       - full_name
       - email
       - password
@@ -865,5 +949,3 @@ components:
         password:
           scopes: {}
           tokenUrl: login
-
-
