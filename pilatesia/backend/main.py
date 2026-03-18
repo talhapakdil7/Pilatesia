@@ -1,10 +1,15 @@
 import os
+import time
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import text
+
 from app.routers import auth, lessons, reservations, membership
 from app.routers import admin_lessons
 from app.routers import admin_users
 from app.routers import warmups
+from app.db import engine
+from app.scripts.init_db import main as init_db_main
 
 app = FastAPI(title="Pilatesia API")
 
@@ -28,6 +33,37 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+def wait_for_db(max_attempts=30):
+    """DB hazır olana kadar bekler (Railway container start sırası için)."""
+    for i in range(max_attempts):
+        try:
+            with engine.connect() as conn:
+                conn.execute(text("SELECT 1"))
+            return
+        except Exception:
+            if i == max_attempts - 1:
+                raise
+            time.sleep(2)
+
+
+def tables_exist():
+    """'studios' tablosu varsa şema hazır varsayılır."""
+    try:
+        with engine.connect() as conn:
+            r = conn.execute(text("SHOW TABLES LIKE 'studios'")).fetchone()
+            return r is not None
+    except Exception:
+        return False
+
+
+@app.on_event("startup")
+def ensure_tables_on_startup():
+    wait_for_db()
+    if not tables_exist():
+        init_db_main()
+
 
 app.include_router(auth.router)
 app.include_router(lessons.router)
