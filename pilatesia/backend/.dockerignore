@@ -1,0 +1,14 @@
+venv
+.env
+.env.*
+!.env.example
+.git
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.coverage
+htmlcov
+.idea
+*.md
+!MIGRATION.md

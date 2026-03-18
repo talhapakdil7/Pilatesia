@@ -1,0 +1,47 @@
+services:
+  db:
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-pilatesia}
+      MYSQL_DATABASE: pilatesia
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql:ro
+    healthcheck:
+      # MySQL "hazır" olduğunda değil; tablolar oluşturulmuş olduğunda backend başlasın.
+      test: ["CMD", "sh", "-c", "mysql -u root -p$$MYSQL_ROOT_PASSWORD -D pilatesia -e \"SELECT 1 FROM studios LIMIT 1;\""]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "3307:3306"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: mysql+pymysql://root:${MYSQL_ROOT_PASSWORD:-pilatesia}@db:3306/pilatesia
+      SECRET_KEY: ${SECRET_KEY:-supersecretkey-change-in-production}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:8000
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "0.0.0.0:3000:80"
+
+volumes:
+  mysql_data:

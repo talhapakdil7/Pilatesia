@@ -1,0 +1,9 @@
+# Python 3.13 uyumluluğu için SQLAlchemy 2.0.36+ gerekli
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+sqlalchemy>=2.0.36
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+PyMySQL>=1.1.0
+python-dotenv>=1.0.0

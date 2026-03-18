@@ -29,7 +29,6 @@ Savage-Pilatesia
 
 **Ekip Üyeleri:** 
 - Talha Pakdil
-- Büşra Mangaoğlu
 
 ---
 

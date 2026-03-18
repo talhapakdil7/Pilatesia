@@ -7,20 +7,20 @@
 5. **Update Profile** (/profile) (Talha Pakdil)
 6. **Check Studio Code** (/studios/check) (Talha Pakdil)
 
-7. **List Lessons** (/lessons) (Büşra Mangaoglu)
-8. **View Lesson Details** (/lessons/{lesson_id}) (Büşra Mangaoglu)
+7. **List Lessons** (/lessons) (Talha Pakdil)
+8. **View Lesson Details** (/lessons/{lesson_id}) (Talha Pakdil)
 
-9. **Create Reservation** (/reservations) (Büşra Mangaoglu)
-10. **List Active Reservations** (/my-reservations) (Büşra Mangaoglu)
-11. **View Reservation History** (/my-reservations/history) (Büşra Mangaoglu)
-12. **Cancel Reservation** (/reservations/{reservation_id}) (Büşra Mangaoglu)
+9. **Create Reservation** (/reservations) (Talha Pakdil)
+10. **List Active Reservations** (/my-reservations) (Talha Pakdil)
+11. **View Reservation History** (/my-reservations/history) (Talha Pakdil)
+12. **Cancel Reservation** (/reservations/{reservation_id}) (Talha Pakdil)
 
 13. **View Membership Information** (/membership) (Talha Pakdil)
 
-14. **Admin List Lessons** (/admin/lessons) (Büşra Mangaoglu)
-15. **Admin Create Lesson** (/admin/lessons) (Büşra Mangaoglu)
-16. **Admin Update Lesson** (/admin/lessons/{lesson_id}) (Büşra Mangaoglu)
-17. **Admin Delete Lesson** (/admin/lessons/{lesson_id}) (Büşra Mangaoglu)
+14. **Admin List Lessons** (/admin/lessons) (Talha Pakdil)
+15. **Admin Create Lesson** (/admin/lessons) (Talha Pakdil)
+16. **Admin Update Lesson** (/admin/lessons/{lesson_id}) (Talha Pakdil)
+17. **Admin Delete Lesson** (/admin/lessons/{lesson_id}) (Talha Pakdil)
 
 18. **Admin List Users** (/admin/users) (Talha Pakdil)
 19. **Admin Create User** (/admin/users) (Talha Pakdil)
@@ -38,4 +38,4 @@
 
 1. [Talha Pakdil Requirements](Talha-Pakdil/Talha-Pakdil-Gereksinimler.md)
 
-2. [Busra Mangaoglu Requirements](Busra-Mangaoglu/Busra-Mangaoglu-Gereksinimler.md)
+
