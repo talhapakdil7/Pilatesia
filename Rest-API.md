@@ -20,36 +20,36 @@ Bu dokümanda, proje ekibindeki her üyenin geliştirmekten sorumlu olduğu REST
     "admin_name": "Hasan Yilmaz",
     "admin_email": "hasan@gmail.com",
     "admin_password": "123456"
-  }
+    }
     ```
 
 - **Response:** `200 Ok` 
-  ```json
-{
+```json
+    {
     "message": "Stüdyo oluşturuldu. Admin hesabıyla giriş yapabilirsiniz.",
     "studio_code": "34ist"
-}
-    ```
+    }
+```
 
 ## 2. register
 - **Endpoint:** `POST /register`
 - **Açıklama:** The user registers with the system using a valid studio code.
 - **Request Body:**
-  ```json
+```json
 {
   "studio_code": "34ist",
   "full_name": "elif beyza",
   "email": "elifbb@gmail.com",
   "password": "123456"
 }
-    ```
+```
 
 - **Response:** `200 Ok` 
-  ```json
+```json
 {
     "message": "Kayıt başarılı. Giriş yapabilirsiniz."
 }
-    ```
+```
     
 ## 3. Login
 
@@ -66,12 +66,12 @@ Bu dokümanda, proje ekibindeki her üyenin geliştirmekten sorumlu olduğu REST
 
 
 - **Response:** `200 Ok` 
-  ```json
+```json
 {
     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzc0MDMwNzQ1fQ.sUGZPbrIgjt8g9UJ-xlpXp5H-Vk2p7VbAwRW4LRlPoI",
     "token_type": "bearer"
 }
-    ```
+```
     
 ## 4. Me
 
@@ -91,7 +91,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzc0MDMwNzQ1fQ.
 ```
 
 - **Response:** `200 Ok` 
-  ```json
+```json
 {
     "id": 15,
     "studio_id": 11,
@@ -100,7 +100,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzc0MDMwNzQ1fQ.
     "role": "user",
     "created_at": "2026-03-19T18:16:40"
 }
-    ```
+```
     
 ## 5. profile
 
@@ -116,11 +116,11 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzc0MDMwNzQ1fQ.
 }
 
 - **Response:** `200 Ok` 
-  ```json
+```json
 {
     "message": "Profil güncellendi"
 }
-    ```
+```
 
 ## 6. Studios-check
 
@@ -129,11 +129,11 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzc0MDMwNzQ1fQ.
 - **Request Body:** None
 
 - **Response:** `200 Ok` 
-  ```json
+```json
 {
     "valid": true,
     "name": "İstanbul Studio"
 }
-    ```
+```
 
 
