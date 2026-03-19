@@ -14,10 +14,11 @@ router = APIRouter(tags=["auth"])
 @router.post("/register-studio")
 def register_studio(body: StudioRegister, db: Session = Depends(get_db)):
     """Yeni stüdyo oluşturur ve ilk admin kullanıcıyı ekler (herkese açık)."""
+    studio_code = body.studio_code.strip().lower()
     # Stüdyo kodu benzersiz mi?
     existing = db.execute(
         text("SELECT id FROM studios WHERE code = :code"),
-        {"code": body.studio_code.strip().lower()},
+        {"code": studio_code},
     ).fetchone()
     if existing:
         raise HTTPException(status_code=400, detail="Bu stüdyo kodu zaten kullanılıyor")
@@ -25,11 +26,18 @@ def register_studio(body: StudioRegister, db: Session = Depends(get_db)):
     # Stüdyo oluştur
     db.execute(
         text("INSERT INTO studios (name, code) VALUES (:name, :code)"),
-        {"name": body.studio_name.strip(), "code": body.studio_code.strip().lower()},
+        {"name": body.studio_name.strip(), "code": studio_code},
     )
     db.commit()
-    r = db.execute(text("SELECT LAST_INSERT_ID() AS id")).fetchone()
-    studio_id = r.id
+    # LAST_INSERT_ID() bazen connection/pool kaynaklı 0 dönebiliyor.
+    # En güvenlisi studios tablosundan code ile studio_id'yi çekmek.
+    r = db.execute(
+        text("SELECT id FROM studios WHERE code = :code ORDER BY id DESC LIMIT 1"),
+        {"code": studio_code},
+    ).fetchone()
+    studio_id = r.id if r is not None else None
+    if studio_id is None:
+        raise HTTPException(status_code=500, detail="Stüdyo id alınamadı")
 
     # Aynı stüdyoda email kullanılmış mı?
     existing_user = db.execute(
