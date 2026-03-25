@@ -1,0 +1,342 @@
+{
+  "info": {
+    "_postman_id": "f578bf9a-dd53-488b-98cc-9c4bf1c88a1b",
+    "name": "Talha_Pakdil_API_Requirements",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50803124",
+    "_collection_link": "https://go.postman.co/collection/50803124-f578bf9a-dd53-488b-98cc-9c4bf1c88a1b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "register-studio",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "  {\n    \"studio_name\": \" İstanbul Studio\",\n    \"studio_code\": \"34ist\",\n    \"admin_name\": \"Hasan Yilmaz\",\n    \"admin_email\": \"hasan@gmail.com\",\n    \"admin_password\": \"123456\"\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://pilatesia-production.up.railway.app/register-studio",
+          "protocol": "https",
+          "host": [
+            "pilatesia-production",
+            "up",
+            "railway",
+            "app"
+          ],
+          "path": [
+            "register-studio"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studio_code\": \"34ist\",\n  \"full_name\": \"elif beyza\",\n  \"email\": \"elifbb@gmail.com\",\n  \"password\": \"123456\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://pilatesia-production.up.railway.app/register",
+          "protocol": "https",
+          "host": [
+            "pilatesia-production",
+            "up",
+            "railway",
+            "app"
+          ],
+          "path": [
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "elifbb@gmail.com",
+              "type": "text",
+              "uuid": "8f680d53-3953-4832-89c0-609d060ade30"
+            },
+            {
+              "key": "password",
+              "value": "123456",
+              "type": "text",
+              "uuid": "8a6df127-144c-4ce1-bc85-5e001769e586"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://pilatesia-production.up.railway.app/login",
+          "protocol": "https",
+          "host": [
+            "pilatesia-production",
+            "up",
+            "railway",
+            "app"
+          ],
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "me",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzc0MDMwNzQ1fQ.sUGZPbrIgjt8g9UJ-xlpXp5H-Vk2p7VbAwRW4LRlPoI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://pilatesia-production.up.railway.app/me",
+          "protocol": "https",
+          "host": [
+            "pilatesia-production",
+            "up",
+            "railway",
+            "app"
+          ],
+          "path": [
+            "me"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "profile",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzc0MDMwNzQ1fQ.sUGZPbrIgjt8g9UJ-xlpXp5H-Vk2p7VbAwRW4LRlPoI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"full_name\": \"elif beyza yeniiii\",\n  \"password\": \"123456\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://pilatesia-production.up.railway.app/profile",
+          "protocol": "https",
+          "host": [
+            "pilatesia-production",
+            "up",
+            "railway",
+            "app"
+          ],
+          "path": [
+            "profile"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "studios/check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://pilatesia-production.up.railway.app/studios/check?studio_code=34ist",
+          "protocol": "https",
+          "host": [
+            "pilatesia-production",
+            "up",
+            "railway",
+            "app"
+          ],
+          "path": [
+            "studios",
+            "check"
+          ],
+          "query": [
+            {
+              "key": "studio_code",
+              "value": "34ist"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "lessons",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzc0NTQ3ODA3fQ.AOpa5KvNxUQT_gTg2GfmAPDxCEmMo4XNsLUMn8SwXXI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://pilatesia-production.up.railway.app/lessons",
+          "protocol": "https",
+          "host": [
+            "pilatesia-production",
+            "up",
+            "railway",
+            "app"
+          ],
+          "path": [
+            "lessons"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "reservations",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzc0NTQ3ODA3fQ.AOpa5KvNxUQT_gTg2GfmAPDxCEmMo4XNsLUMn8SwXXI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"lesson_id\": 2\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://pilatesia-production.up.railway.app/reservations",
+          "protocol": "https",
+          "host": [
+            "pilatesia-production",
+            "up",
+            "railway",
+            "app"
+          ],
+          "path": [
+            "reservations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "my-reservations",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzc0NTQ3ODA3fQ.AOpa5KvNxUQT_gTg2GfmAPDxCEmMo4XNsLUMn8SwXXI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://pilatesia-production.up.railway.app/my-reservations",
+          "protocol": "https",
+          "host": [
+            "pilatesia-production",
+            "up",
+            "railway",
+            "app"
+          ],
+          "path": [
+            "my-reservations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzc0NTQ3ODA3fQ.AOpa5KvNxUQT_gTg2GfmAPDxCEmMo4XNsLUMn8SwXXI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://pilatesia-production.up.railway.app/reservations/1",
+          "protocol": "https",
+          "host": [
+            "pilatesia-production",
+            "up",
+            "railway",
+            "app"
+          ],
+          "path": [
+            "reservations",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
