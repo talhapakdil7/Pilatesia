@@ -4,7 +4,6 @@
 
 **Front-end Test Videosu:** [Frontend test videosu](https://www.youtube.com/watch?v=KwFOXFPuW0k)
 
-**Ortak notlar:** Korumalı uçlarda `Authorization: Bearer <token>`. `POST /login` gövdesi `application/x-www-form-urlencoded` (`username` = e-posta). `422` alan doğrulama; `401` / `403` oturum veya yetki.
 
 ---
 
@@ -585,29 +584,3 @@
 
 ---
 
-## Özet tablo
-
-| # | Başlık özet | Method | Path |
-|---|-------------|--------|------|
-| 1 | Üye olma | POST | `/register` |
-| 2 | Profil görüntüle | GET | `/me` |
-| 3 | Profil düzenle | PUT | `/profile` |
-| 4 | Hesap / kullanıcı sil | DELETE | `/admin/users/{user_id}` |
-| 5 | Stüdyo + admin kayıt | POST | `/register-studio` |
-| 6 | Giriş | POST | `/login` |
-| 7 | Ders listesi | GET | `/lessons` |
-| 8 | Ders detay | GET | `/lessons/{lesson_id}` |
-| 9 | Rezervasyon | POST | `/reservations` |
-| 10 | Aktif rezervasyonlar | GET | `/my-reservations` |
-| 11 | Rezervasyon geçmişi | GET | `/my-reservations/history` |
-| 12 | Rezervasyon iptal | DELETE | `/reservations/{reservation_id}` |
-| 13 | Üyelik / kredi | GET | `/membership` |
-| 14–17 | Admin dersler | * | `/admin/lessons` |
-| 18–22 | Admin kullanıcılar | * | `/admin/users` … |
-| 23–26 | Isınma hareketleri | * | `/warmup-moves` … |
-
-*Stüdyo kodu doğrulama `GET /studios/check` bölüm 1 ile entegre.*
-
----
-
-*Kaynak: Pilatesia OpenAPI 3.1 ve backend router davranışı. İtalik cümleler API kapsamı dışı veya ileride eklenecek özellikler için nottur.*
