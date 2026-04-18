@@ -1,35 +1,33 @@
-## Railway Deploy (Backend: FastAPI + MySQL)
+## Vercel Deploy (Backend: FastAPI + Neon PostgreSQL)
 
-Bu proje Railway üzerinde backend (FastAPI) ve MySQL’i ayrı servisler olarak çalıştırmak üzere hazırlanmıştır.
+Bu proje Vercel üzerinde Python Serverless Functions olarak çalışmaktadır.
 
-### 1) MySQL servisi
-- Railway’de yeni proje içinde “MySQL” template’i ekle.
-- Şema yoksa backend bunu otomatik oluşturur (backend, container/entrypoint açılışında `studios` tablosunu kontrol eder; yoksa `python -m app.scripts.init_db` çalıştırır).
+### Canlı Link
+- **API:** https://pilatesia-api.vercel.app
+- **Swagger Docs:** https://pilatesia-api.vercel.app/docs
 
-### 2) Backend servisi
-- Kaynak: GitHub repository (veya Docker ile; bu dokümanda source akışı esas alınmıştır).
-- Çalıştırma (Start command):
-  - `python entrypoint.py`
-- Build/Run ortamı:
-  - `requirements.txt` kullanılır.
+### 1) Neon PostgreSQL
+- Vercel Marketplace üzerinden `vercel integration add neon` ile eklenir.
+- `DATABASE_URL` otomatik olarak proje env'lerine enjekte edilir.
+- Şema yoksa backend bunu otomatik oluşturur (startup sırasında `studios` tablosunu kontrol eder; yoksa `init_db` çalıştırır).
+
+### 2) Vercel proje yapılandırması
+- Kaynak: GitHub repository `talhapakdil7/Pilatesia`
+- Root Directory: `pilatesia/backend`
+- `vercel.json` ve `api/index.py` Vercel Python runtime'ı yapılandırır.
 
 ### 3) Zorunlu environment variables
 - `DATABASE_URL`
-  - Format örneği: `mysql+pymysql://USER:PASSWORD@HOST:PORT/pilatesia`
+  - Neon'dan otomatik gelir.
+  - Format: `postgresql://USER:PASSWORD@HOST/neondb?sslmode=require`
 - `SECRET_KEY`
   - JWT imzalama için güçlü bir secret.
 
 ### 4) CORS environment variable
 - `CORS_ALLOW_ORIGINS`
   - Virgülle ayır (comma-separated).
-  - Örnek (Vercel frontend domainin eklenmiş hali):
-    - `https://your-frontend.vercel.app,http://localhost:5173,http://127.0.0.1:5173`
+  - Örnek: `https://pilatesia.vercel.app,http://localhost:5173`
 
-### 5) Port
-- Railway start sürecinde genelde `PORT` env’i set edilir.
-- `entrypoint.py` `PORT` env’ini okuyup uvicorn’u ona göre ayağa kaldırır.
-
-### 6) Doğrulama
+### 5) Doğrulama
 - Deploy sonrası:
-  - `/{docs}` veya `http://<backend-domain>/docs` açılınca FastAPI Swagger görünmelidir.
-
+  - `https://pilatesia-api.vercel.app/docs` açılınca FastAPI Swagger görünmelidir.

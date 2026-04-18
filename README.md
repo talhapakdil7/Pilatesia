@@ -17,7 +17,7 @@ Sağlık ve Fitness / Rezervasyon ve Planlama Sistemi
 
 ## Proje Linkleri
 
-- **REST API Adresi:** https://pilatesia-production.up.railway.app/docs
+- **REST API Adresi:** https://pilatesia-api.vercel.app/docs
 - **Web Frontend Adresi:** https://pilatesia.vercel.app/login
 
 ---

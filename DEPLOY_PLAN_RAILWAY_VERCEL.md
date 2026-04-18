@@ -1,4 +1,4 @@
-# Pilatesia Deploy Yol Haritası (Railway + Vercel)
+# Pilatesia Deploy Yol Haritası (Vercel)
 
 ## Durum
 - `main` dalına push yapıldı.
@@ -7,91 +7,72 @@
   - Frontend: `pilatesia/frontend` (React/Vite)
 
 ## Hedef
-- Önce MySQL (Railway) -> sonra Backend (Railway) -> en son Frontend (Vercel)
+- Tüm altyapı Vercel üzerinde: Neon PostgreSQL → Backend (Vercel Python Serverless) → Frontend (Vercel Static)
+
+## Canlı Linkler
+- **Frontend:** https://pilatesia.vercel.app
+- **Backend API:** https://pilatesia-api.vercel.app
+- **Swagger Docs:** https://pilatesia-api.vercel.app/docs
 
 ---
 
-## Adım 2: Railway MySQL oluştur
-1. Railway’de **New Project** -> **MySQL** ekle.
-2. Varsayılanlar ile devam et, ancak backend bağlantısı için gerekli bilgileri not et:
-   - `host`
-   - `port` (genelde 3306)
-   - `database` (backend `pilatesia` bekliyor)
-   - `username`
-   - `password`
-3. Sonuç: backend için aşağıdaki formatta connection string üretilecek.
-   - Örnek:
-     - `mysql+pymysql://USER:PASSWORD@HOST:PORT/pilatesia`
+## Adım 1: Neon PostgreSQL oluştur
+1. Vercel Dashboard → Storage → **Create Database** → **Neon Postgres** seç.
+   - Veya CLI ile: `vercel integration add neon`
+2. Oluşturulan `DATABASE_URL` otomatik olarak proje env'lerine eklenir.
+3. Tabloları oluştur:
+   - Neon SQL editöründe `scripts/init_db.sql` içeriğini çalıştır.
+   - Veya lokal: `DATABASE_URL="..." python -m app.scripts.init_db`
 
 ---
 
-## Adım 3: Railway Backend (FastAPI) deploy
-1. Railway’de **Add Service** -> **FastAPI** (veya “Web Service”) oluştur.
-2. Kaynak:
-   - GitHub repo: `talhapakdil7/Pilatesia`
-   - Dal: `main`
-3. **Root Directory**:
-   - `pilatesia/backend`
-4. Build/Start:
-   - Start command: `python entrypoint.py`
-   - Build ortamı: `requirements.txt` otomatik kullanılmalı (backend klasöründe mevcut).
+## Adım 2: Backend (FastAPI) deploy
+1. Vercel'de **Add New Project** → GitHub repo: `talhapakdil7/Pilatesia`
+2. **Root Directory**: `pilatesia/backend`
+3. Vercel, `vercel.json` + `api/index.py` + `@vercel/python` ile otomatik build eder.
 
-### Backend environment variables (Railway)
+### Backend environment variables (Vercel)
 Zorunlu:
 1. `DATABASE_URL`
-   - Format:
-     - `mysql+pymysql://USER:PASSWORD@HOST:PORT/pilatesia`
+   - Neon entegrasyonundan otomatik gelir.
+   - Format: `postgresql://USER:PASSWORD@HOST/neondb?sslmode=require`
 2. `SECRET_KEY`
-   - Güçlü bir secret string (Railway env olarak saklayın).
+   - Güçlü bir secret string.
 3. `CORS_ALLOW_ORIGINS`
-   - Başlangıç için (geçici):
-     - `http://localhost:5173,http://127.0.0.1:5173`
-   - Vercel domain geldikten sonra güncellenecek (Adım 6).
+   - Örnek: `https://pilatesia.vercel.app`
 
 Opsiyonel:
-- `ALGORITHM` (defaults: `HS256`)
-- `PORT` (Railway genelde otomatik ayarlar; `entrypoint.py` `PORT` okur)
+- `ALGORITHM` (varsayılan: `HS256`)
 
 ### Backend doğrulama
 Deploy sonrası:
 1. Swagger docs:
-   - `https://<backend-domain>/docs`
+   - `https://pilatesia-api.vercel.app/docs`
    - HTTP 200 ve sayfa açılıyorsa backend çalışıyor.
 2. Basit endpoint:
-   - `https://<backend-domain>/studios/check?studio_code=<kod>`
+   - `https://pilatesia-api.vercel.app/studios/check?studio_code=<kod>`
 
 ---
 
-## Adım 4: Vercel Frontend deploy
-1. Vercel’de **Add New Project**:
+## Adım 3: Vercel Frontend deploy
+1. Vercel'de **Add New Project**:
    - GitHub repo: `talhapakdil7/Pilatesia`
    - Dal: `main`
-2. **Root Directory**:
-   - `pilatesia/frontend`
+2. **Root Directory**: `pilatesia/frontend`
 3. Build ayarları:
    - Build command: `npm run build`
    - Output directory: `dist`
 4. Vercel environment variables (build-time)
    - `VITE_API_BASE_URL`
-   - Değer:
-     - `https://<backend-domain>` (path ekleme, sadece domain/base)
+   - Değer: `https://pilatesia-api.vercel.app`
 
 ### Frontend doğrulama
 - Frontend ana sayfa açılmalı.
-- Login/Register route’ları çalışmalı.
+- Login/Register route'ları çalışmalı.
 
 ---
 
-## Adım 5: CORS güncellemesi (kritik)
-Vercel domaini geldiğinde (örn. `https://pilatesia-web.vercel.app`):
-1. Railway backend’te `CORS_ALLOW_ORIGINS` değerini güncelle.
-2. Örnek:
-   - `http://localhost:5173,https://pilatesia-web.vercel.app`
-3. Backend’i yeniden deploy et / restart.
-
----
-
-## Adım 6: Uçtan uca canlı test (önerilen sıra)
+## Adım 4: Uçtan uca canlı test (önerilen sıra)
 1. `POST /register-studio`
    - Yeni stüdyo + admin oluştur
 2. `POST /login`
@@ -110,12 +91,11 @@ Vercel domaini geldiğinde (örn. `https://pilatesia-web.vercel.app`):
 ---
 
 ## Sorun Giderme (en sık)
-1. Frontend backend’e istek atamıyor
+1. Frontend backend'e istek atamıyor
    - `VITE_API_BASE_URL` yanlış olabilir veya boş olabilir (Vercel env build-time).
 2. Login çalışmıyor / CORS hatası
    - `CORS_ALLOW_ORIGINS` Vercel domain ile güncellenmemiştir.
 3. `/docs` açılmıyor
-   - Railway backend environment vars eksik (özellikle `DATABASE_URL` / `SECRET_KEY`).
-4. MySQL tabloları yok/başlamıyor
+   - Backend environment vars eksik (özellikle `DATABASE_URL` / `SECRET_KEY`).
+4. PostgreSQL tabloları yok
    - `entrypoint.py` `studios` tablosunu kontrol eder; yoksa `init_db` çalışır.
-

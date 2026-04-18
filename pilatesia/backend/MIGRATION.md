@@ -1,38 +1,32 @@
-# MySQL ve Çoklu Stüdyo Geçiş Rehberi
+# PostgreSQL ve Çoklu Stüdyo Geçiş Rehberi
 
 ## Yapılan Değişiklikler
 
-- **Veritabanı:** SQLite → MySQL
+- **Veritabanı:** SQLite → MySQL → PostgreSQL (Neon)
 - **Yeni kavram:** Stüdyo (studio) – Her stüdyonun kendi admini ve kullanıcıları var
 - **Email:** Artık `(email, studio_id)` benzersiz – aynı email farklı stüdyolarda kullanılabilir
 
-## Kurulum
+## Kurulum (Lokal Geliştirme)
 
-### 1. MySQL
+### 1. PostgreSQL
 
-MySQL kurulu değilse:
+PostgreSQL kurulu değilse:
 
-- macOS: `brew install mysql` ve `brew services start mysql`
-- Ubuntu: `sudo apt install mysql-server`
+- macOS: `brew install postgresql@16` ve `brew services start postgresql@16`
+- Ubuntu: `sudo apt install postgresql`
 
 Veritabanı oluştur:
 
 ```bash
-mysql -u root -p -e "CREATE DATABASE pilatesia;"
+createdb pilatesia
 ```
 
 ### 2. Ortam Değişkenleri
 
-`.env.example` dosyasını `.env` olarak kopyalayın ve değerleri güncelleyin:
-
-```bash
-cp .env.example .env
-```
-
-`.env` içeriği örneği:
+`.env` dosyası oluşturun:
 
 ```
-DATABASE_URL=mysql+pymysql://root:SIFRENIZ@localhost:3306/pilatesia
+DATABASE_URL=postgresql://localhost:5432/pilatesia
 SECRET_KEY=guclu-bir-gizli-anahtar
 ```
 
@@ -61,9 +55,18 @@ curl -X POST http://127.0.0.1:8000/register-studio \
 ### 6. Uygulamayı Çalıştır
 
 ```bash
-./run.sh          # Backend
-cd ../frontend && npm run dev   # Frontend
+uvicorn main:app --reload          # Backend
+cd ../frontend && npm run dev      # Frontend
 ```
+
+## Docker ile Çalıştırma
+
+```bash
+cd pilatesia/backend
+docker compose up --build
+```
+
+Bu komut PostgreSQL, Backend ve Frontend'i ayağa kaldırır.
 
 ## Akışlar
 
