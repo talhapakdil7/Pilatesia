@@ -1,5 +1,5 @@
 """
-MySQL veritabanı tablolarını oluşturur.
+PostgreSQL veritabanı tablolarını oluşturur.
 Kullanım: python -m app.scripts.init_db
 veya: uv run python -m app.scripts.init_db
 """

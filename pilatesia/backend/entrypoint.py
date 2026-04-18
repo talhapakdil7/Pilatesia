@@ -23,7 +23,10 @@ def tables_exist():
     from app.db import engine
     try:
         with engine.connect() as conn:
-            r = conn.execute(text("SHOW TABLES LIKE 'studios'")).fetchone()
+            r = conn.execute(text(
+                "SELECT tablename FROM pg_tables "
+                "WHERE schemaname = 'public' AND tablename = 'studios'"
+            )).fetchone()
             return r is not None
     except Exception:
         return False

@@ -29,8 +29,7 @@ def register_studio(body: StudioRegister, db: Session = Depends(get_db)):
         {"name": body.studio_name.strip(), "code": studio_code},
     )
     db.commit()
-    # LAST_INSERT_ID() bazen connection/pool kaynaklı 0 dönebiliyor.
-    # En güvenlisi studios tablosundan code ile studio_id'yi çekmek.
+    # Yeni eklenen stüdyoyu code ile çek (en güvenli yöntem).
     r = db.execute(
         text("SELECT id FROM studios WHERE code = :code ORDER BY id DESC LIMIT 1"),
         {"code": studio_code},

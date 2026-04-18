@@ -89,7 +89,7 @@ def my_reservations(
             WHERE r.user_id = :user_id
               AND r.status = 'active'
               AND l.start_time IS NOT NULL
-              AND DATE_ADD(l.start_time, INTERVAL l.duration MINUTE) > NOW()
+              AND (l.start_time + l.duration * INTERVAL '1 minute') > NOW()
             ORDER BY l.start_time ASC
         """),
         {"user_id": user_id},

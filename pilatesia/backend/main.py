@@ -20,11 +20,15 @@ default_allow_origins = [
     "http://127.0.0.1:3000",
 ]
 
-allow_origins_env = os.getenv(
-    "CORS_ALLOW_ORIGINS",
-    ",".join(default_allow_origins),
-)
-allow_origins = [o.strip() for o in allow_origins_env.split(",") if o.strip()]
+allow_origins_env = os.getenv("CORS_ALLOW_ORIGINS", "")
+if allow_origins_env.strip():
+    allow_origins = [o.strip() for o in allow_origins_env.split(",") if o.strip()]
+else:
+    allow_origins = default_allow_origins[:]
+
+vercel_url = os.getenv("VERCEL_URL")
+if vercel_url and f"https://{vercel_url}" not in allow_origins:
+    allow_origins.append(f"https://{vercel_url}")
 
 app.add_middleware(
     CORSMiddleware,
@@ -52,7 +56,10 @@ def tables_exist():
     """'studios' tablosu varsa şema hazır varsayılır."""
     try:
         with engine.connect() as conn:
-            r = conn.execute(text("SHOW TABLES LIKE 'studios'")).fetchone()
+            r = conn.execute(text(
+                "SELECT tablename FROM pg_tables "
+                "WHERE schemaname = 'public' AND tablename = 'studios'"
+            )).fetchone()
             return r is not None
     except Exception:
         return False
